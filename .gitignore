@@ -1,0 +1,10 @@
+# Node/Angular
+node_modules/
+dist/
+.env
+cook-log-frontend/.env
+cook-log-backend/.env
+
+# OS Files
+.DS_Store
+Thumbs.db
