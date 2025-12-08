@@ -1,5 +1,7 @@
 # Node/Angular
 node_modules/
+cook-log-frontend/node_modules/
+cook-log-backend/node_modules/
 dist/
 .env
 cook-log-frontend/.env
