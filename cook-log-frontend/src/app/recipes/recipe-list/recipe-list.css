@@ -1,0 +1,13 @@
+.recipe-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.recipe-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  width: 300px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
