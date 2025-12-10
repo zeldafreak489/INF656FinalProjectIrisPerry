@@ -1,0 +1,18 @@
+<!-- src/app/layout/header.html -->
+<header class="site-header">
+  <div class="container">
+    <h1 class="logo">CookLog</h1>
+    <nav>
+      <a routerLink="/">Home</a>
+      <a routerLink="/recipes">Recipes</a>
+
+      <ng-container *ngIf="authService.isLoggedIn(); else loggedOut">
+        <button class="btn" (click)="authService.logout()">Logout</button>
+      </ng-container>
+      <ng-template #loggedOut>
+        <a routerLink="/login" class="btn">Login</a>
+        <a routerLink="/register" class="btn">Register</a>
+      </ng-template>
+    </nav>
+  </div>
+</header>

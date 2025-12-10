@@ -1,13 +1,44 @@
-.recipe-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+/* src/app/recipes/recipe-list.css */
+.recipe-list-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem 1rem;
 }
-
+.btn-create {
+  display: inline-block;
+  margin-bottom: 1rem;
+  background-color: #ff6f61;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+}
 .recipe-card {
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 12px;
-  width: 300px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #fff5f5;
+}
+.recipe-card h3 {
+  margin-top: 0;
+}
+.recipe-card .actions {
+  margin-top: 0.5rem;
+}
+.btn-edit {
+  background-color: #ffd700;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+.btn-delete {
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
 }

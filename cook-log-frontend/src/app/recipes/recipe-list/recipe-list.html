@@ -1,19 +1,22 @@
-<pre>{{ recipes | json }}</pre>
+<!-- src/app/recipes/recipe-list.html -->
+<div class="recipe-list-container">
+  <h2>My Recipes</h2>
+  <a routerLink="/recipes/create" class="btn-create">➕ Create New Recipe</a>
 
-<h2>My Recipes</h2>
-
-<a routerLink="/recipes/create">➕ Create New Recipe</a>
-
-<div *ngIf="recipes.length; else loading">
-  <div *ngFor="let recipe of recipes">
-    <h2>{{ recipe.title }}</h2>
-    <p>{{ recipe.description }}</p>
+  <div *ngIf="recipes.length; else loading">
+    <div class="recipe-card" *ngFor="let recipe of recipes">
+      <h3>{{ recipe.title }}</h3>
+      <p>{{ recipe.description }}</p>
+      <div class="actions">
+        <a routerLink="/recipes/edit/{{recipe._id}}" class="btn-edit">Edit</a>
+        <button (click)="deleteRecipe(recipe._id!)" class="btn-delete">Delete</button>
+      </div>
+    </div>
   </div>
+
+  <ng-template #loading>
+    <p>Loading recipes...</p>
+  </ng-template>
+
+  <div *ngIf="!recipes.length && !loading">No recipes yet.</div>
 </div>
-<ng-template #loading>
-  <p>Loading recipes...</p>
-</ng-template>
-
-
-<div *ngIf="!loading && recipes.length === 0">No recipes yet.</div>
-

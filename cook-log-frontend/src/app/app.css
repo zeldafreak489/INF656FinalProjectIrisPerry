@@ -1,0 +1,19 @@
+.main-content {
+    padding: 2rem;
+    min-height: calc(100vh - 120px); /* adjust for header/footer height */
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}

@@ -1,0 +1,35 @@
+/* src/app/layout/header.css */
+.site-header {
+  background-color: #ff6f61;
+  color: white;
+  padding: 1rem 0;
+}
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 1rem;
+}
+.site-header nav a,
+.site-header nav button {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.site-header nav a.btn,
+.site-header nav button.btn {
+  background-color: white;
+  color: #ff6f61;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+}
+.site-header nav a:hover,
+.site-header nav button:hover {
+  opacity: 0.8;
+}
