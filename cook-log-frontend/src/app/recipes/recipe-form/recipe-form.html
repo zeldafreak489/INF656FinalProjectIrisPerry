@@ -1,31 +1,35 @@
-<h2>{{ isEdit ? 'Edit Recipe' : 'Create Recipe' }}</h2>
+<div class="recipe-form-container">
+  <div class="recipe-form-card">
+    <h2>{{ isEdit ? 'Edit Recipe' : 'Create Recipe' }}</h2>
 
-<form (ngSubmit)="onSubmit()">
-  <div>
-    <label>Title</label><br>
-    <input type="text" [(ngModel)]="recipe.title" name="title" required />
+    <form (ngSubmit)="onSubmit()">
+      <div>
+        <label>Title</label>
+        <input type="text" [(ngModel)]="recipe.title" name="title" required />
+      </div>
+
+      <div>
+        <label>Description</label>
+        <input type="text" [(ngModel)]="recipe.description" name="description" />
+      </div>
+
+      <div>
+        <label>Instructions</label>
+        <textarea [(ngModel)]="recipe.instructions" name="instructions" required></textarea>
+      </div>
+
+      <div>
+        <label>Ingredients (comma-separated)</label>
+        <input type="text" [(ngModel)]="recipe.ingredients" name="ingredients" required />
+      </div>
+
+      <div class="error-msg" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit">
+        {{ isEdit ? 'Update Recipe' : 'Create Recipe' }}
+      </button>
+    </form>
   </div>
-
-  <div>
-    <label>Description</label><br>
-    <input type="text" [(ngModel)]="recipe.description" name="description" />
-  </div>
-
-  <div>
-    <label>Instructions</label><br>
-    <textarea [(ngModel)]="recipe.instructions" name="instructions" required></textarea>
-  </div>
-
-  <div>
-    <label>Ingredients (comma-separated)</label><br>
-    <input type="text" [(ngModel)]="recipe.ingredients" name="ingredients" required />
-  </div>
-
-  <div style="color: red;" *ngIf="errorMessage">
-    {{ errorMessage }}
-  </div>
-
-  <button type="submit">
-    {{ isEdit ? 'Update Recipe' : 'Create Recipe' }}
-  </button>
-</form>
+</div>

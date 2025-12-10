@@ -1,0 +1,76 @@
+/* src/app/register/register.css */
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 100px); /* leave space for header */
+  background-color: #ffeaea; /* light background for contrast */
+}
+
+.auth-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.auth-card h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-card label {
+  margin: 0.5rem 0 0.2rem 0;
+  font-weight: bold;
+  text-align: left;
+}
+
+.auth-card input {
+  padding: 0.6rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.auth-card .btn-primary {
+  padding: 0.6rem;
+  border-radius: 5px;
+  background-color: #ff6f61;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.auth-card .btn-primary:hover {
+  background-color: #e65a50;
+}
+
+.switch-auth {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.switch-auth a {
+  color: #ff6f61;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.error-msg {
+  color: red;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
