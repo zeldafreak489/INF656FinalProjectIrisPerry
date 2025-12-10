@@ -1,0 +1,22 @@
+<!-- src/app/home/home.html -->
+<div class="homepage-container">
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to CookLog 🍳</h1>
+      <p>Discover, create, and share delicious recipes with the world!</p>
+      <a routerLink="/recipes" class="btn-primary">Browse Recipes</a>
+      <a routerLink="/recipes/create" class="btn-secondary">Add Your Recipe</a>
+    </div>
+  </section>
+
+  <section class="featured-recipes">
+    <h2>Featured Recipes</h2>
+    <div class="recipes-grid">
+      <div class="recipe-card" *ngFor="let recipe of featuredRecipes">
+        <h3>{{ recipe.title }}</h3>
+        <p>{{ recipe.description }}</p>
+        <a routerLink="/recipes/{{recipe._id}}" class="btn-view">View</a>
+      </div>
+    </div>
+  </section>
+</div>

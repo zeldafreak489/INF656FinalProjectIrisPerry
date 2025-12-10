@@ -3,9 +3,10 @@ import { RecipeListComponent } from './recipes/recipe-list/recipe-list';
 import { LoginComponent } from './auth/login/login';
 import { RegisterComponent } from './auth/register/register';
 import { RecipeFormComponent } from './recipes/recipe-form/recipe-form';
+import { HomeComponent } from './home/home';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'recipes', pathMatch: 'full' },
+    { path: '', component: HomeComponent },
     { path: 'recipes', component: RecipeListComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
