@@ -1,40 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RecipeService } from '../../services/recipe.service';
-import { NgForOf } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { Recipe } from '../../models/recipe';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-list',
-  imports: [NgForOf, RouterModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule],  // ← THIS IS REQUIRED
   templateUrl: './recipe-list.html',
-  styleUrl: './recipe-list.css',
-  standalone: true
+  styleUrls: ['./recipe-list.css']
 })
-export class RecipeList implements OnInit {
-    recipes: any[] = [];
 
-    constructor(private recipeService: RecipeService) {}
+export class RecipeListComponent implements OnInit {
+  recipes: Recipe[] = [];
 
-    ngOnInit(): void {
-      this.loadRecipes();
-    }
+  constructor(private recipeService: RecipeService) {}
 
-    loadRecipes() {
-      this.recipeService.getAll().subscribe({
-        next: (res: Recipe[]) => this.recipes = res,
-        error: (err: any) => console.error(err)
-      });
-    }
+  ngOnInit() {
+    this.recipeService.recipes$.subscribe({
+      next: (res) => {
+        this.recipes = res;
+      },
+      error: (err) => console.error(err)
+    });
 
-    deleteRecipe(id: string) {
-      if (!confirm('Are you sure you want to delete this recipe?')) return;
-
-      this.recipeService.delete(id).subscribe({
-        next: () => {
-          this.recipes = this.recipes.filter(r => r._id !== id);
-        },
-        error: (err: any) => console.error(err)
-      });
-    }
+    // Trigger a backend fetch to update localStorage
+    this.recipeService.getAll();
+  }
 }

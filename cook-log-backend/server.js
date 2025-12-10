@@ -2,32 +2,29 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
+const history = require('connect-history-api-fallback');
 
 const app = express();
 
 // Middleware
 app.use(express.json({ limit: '5mb' }));
 
-// Routers (we'll create these files next)
+// CORS
+app.use(cors({ origin: process.env.FRONTEND_ORIGIN || 'http://localhost:4200' }));
+
+// Routers
 const authRoutes = require('./routes/auth');
 const recipeRoutes = require('./routes/recipes');
 const plannerRoutes = require('./routes/planner');
 
-// Allow requests from frontend
-const allowedOrigin = process.env.FRONTEND_ORIGIN || 'http://localhost:4200';
-app.use(cors({ origin: allowedOrigin }));
-
-// Mount routes
 app.use('/api/auth', authRoutes);
 app.use('/api/recipes', recipeRoutes);
 app.use('/api/planner', plannerRoutes);
 
-// Simple health check
-app.get('/api/ping', (req, res) => res.json({ ok: true }));
-
-app.get("/", (req, res) => {
-  res.json({ message: "API is running" });
-});
+// Serve Angular
+app.use(history());
+app.use(express.static(path.join(__dirname, '../cook-log-frontend/dist/cook-log-frontend')));
 
 // Error middleware
 app.use((err, req, res, next) => {

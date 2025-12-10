@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { Recipe } from '../../models/recipe';
 import { RecipeService } from '../../services/recipe.service';
 
 @Component({
   selector: 'app-recipe-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './recipe-form.html',
   styleUrl: './recipe-form.css'
 })
@@ -63,7 +63,9 @@ export class RecipeFormComponent {
 
     if (this.isEdit && this.recipeId) {
       this.recipeService.update(this.recipeId, payload).subscribe({
-        next: () => this.router.navigate(['/recipes']),
+        next: () => {
+          this.router.navigate(['/recipes']);
+        },
         error: (err) => (this.errorMessage = err.error?.error || 'Update failed')
       });
     } else {
