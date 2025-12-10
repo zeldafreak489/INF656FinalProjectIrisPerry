@@ -1,9 +1,19 @@
-<div class="recipe-container">
-  <div *ngFor="let recipe of recipes" class="recipe-card">
-    <h3>{{ recipe.title }}</h3>
-    <p><strong>Description:</strong> {{ recipe.description }}</p>
-    <p><strong>Ingredients:</strong> {{ recipe.ingredients.join(', ') }}</p>
-    <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
-    <button (click)="deleteRecipe(recipe._id)">Delete</button>
-  </div>
+<h2>My Recipes</h2>
+
+<!-- Button to create a new recipe -->
+<a routerLink="/recipes/create">
+  <button>Create New Recipe</button>
+</a>
+
+<div *ngFor="let recipe of recipes" class="recipe-card">
+  <h3>{{ recipe.title }}</h3>
+  <p>{{ recipe.description }}</p>
+
+  <!-- Edit button -->
+  <a [routerLink]="['/recipes/edit', recipe._id]">
+    <button>Edit</button>
+  </a>
+
+  <!-- Delete button -->
+  <button (click)="deleteRecipe(recipe._id)">Delete</button>
 </div>

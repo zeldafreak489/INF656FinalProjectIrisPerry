@@ -2,10 +2,13 @@ import { Routes } from '@angular/router';
 import { RecipeList } from './recipes/recipe-list/recipe-list';
 import { LoginComponent } from './auth/login/login';
 import { RegisterComponent } from './auth/register/register';
+import { RecipeFormComponent } from './recipes/recipe-form/recipe-form';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'register', pathMatch: 'full' },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'recipes', component: RecipeList },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'recipes/create', component: RecipeFormComponent },
+    { path: 'recipes/edit/:id', component: RecipeFormComponent }
 ];

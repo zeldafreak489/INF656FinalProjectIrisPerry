@@ -1,0 +1,31 @@
+<h2>{{ isEdit ? 'Edit Recipe' : 'Create Recipe' }}</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label>Title</label><br>
+    <input type="text" [(ngModel)]="recipe.title" name="title" required />
+  </div>
+
+  <div>
+    <label>Description</label><br>
+    <input type="text" [(ngModel)]="recipe.description" name="description" />
+  </div>
+
+  <div>
+    <label>Instructions</label><br>
+    <textarea [(ngModel)]="recipe.instructions" name="instructions" required></textarea>
+  </div>
+
+  <div>
+    <label>Ingredients (comma-separated)</label><br>
+    <input type="text" [(ngModel)]="recipe.ingredients" name="ingredients" required />
+  </div>
+
+  <div style="color: red;" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <button type="submit">
+    {{ isEdit ? 'Update Recipe' : 'Create Recipe' }}
+  </button>
+</form>

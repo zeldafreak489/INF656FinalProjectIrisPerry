@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeService } from '../recipe.service';
+import { RecipeService } from '../../services/recipe.service';
 import { NgForOf } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { Recipe } from '../../models/recipe';
 
 @Component({
   selector: 'app-recipe-list',
-  imports: [NgForOf],
+  imports: [NgForOf, RouterModule],
   templateUrl: './recipe-list.html',
   styleUrl: './recipe-list.css',
   standalone: true
@@ -20,8 +22,8 @@ export class RecipeList implements OnInit {
 
     loadRecipes() {
       this.recipeService.getAll().subscribe({
-        next: (res) => this.recipes = res,
-        error: (err) => console.error(err)
+        next: (res: Recipe[]) => this.recipes = res,
+        error: (err: any) => console.error(err)
       });
     }
 
@@ -32,7 +34,7 @@ export class RecipeList implements OnInit {
         next: () => {
           this.recipes = this.recipes.filter(r => r._id !== id);
         },
-        error: (err) => console.error(err)
+        error: (err: any) => console.error(err)
       });
     }
 }

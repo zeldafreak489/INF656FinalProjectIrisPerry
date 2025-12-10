@@ -1,42 +1,33 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-const API_URL = 'http://localhost:3000/api/recipes';
+import { Recipe } from '../models/recipe';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
+  private apiUrl = 'http://localhost:3000/api/recipes';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  private getAuthHeaders() {
-    const token = localStorage.getItem('token'); // or however you store JWT
-    return {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${token}`
-      })
-    };
+  getAll(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(this.apiUrl);
   }
 
-  getAll(): Observable<any> {
-    return this.http.get(API_URL, this.getAuthHeaders());
+  getById(id: string): Observable<Recipe> {
+    return this.http.get<Recipe>(`${this.apiUrl}/${id}`);
   }
 
-  getById(id: string): Observable<any> {
-    return this.http.get(`${API_URL}/${id}`, this.getAuthHeaders());
+  create(data: Recipe): Observable<Recipe> {
+    return this.http.post<Recipe>(this.apiUrl, data);
   }
 
-  create(recipe: any): Observable<any> {
-    return this.http.post(API_URL, recipe, this.getAuthHeaders());
-  }
-
-  update(id: string, recipe: any): Observable<any> {
-    return this.http.put(`${API_URL}/${id}`, recipe, this.getAuthHeaders());
+  update(id: string, data: Recipe): Observable<Recipe> {
+    return this.http.put<Recipe>(`${this.apiUrl}/${id}`, data);
   }
 
   delete(id: string): Observable<any> {
-    return this.http.delete(`${API_URL}/${id}`, this.getAuthHeaders());
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }
