@@ -16,6 +16,7 @@ router.post('/register', [
   if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
   try {
     const { name, email, password } = req.body;
+    console.log("REQUEST BODY:", req.body);
     let user = await User.findOne({ email });
     if (user) return res.status(400).json({ error: 'User already exists' });
 
@@ -28,6 +29,7 @@ router.post('/register', [
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '12h' });
 
     res.status(201).json({ token, user: { id: user._id, name: user.name, email: user.email } });
+    
   } catch (err) { next(err); }
 });
 

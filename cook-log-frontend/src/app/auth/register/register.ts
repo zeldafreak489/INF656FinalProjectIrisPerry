@@ -31,8 +31,17 @@ export class RegisterComponent {
         localStorage.setItem('token', res.token);
         this.router.navigate(['/recipes']);
       },
+      
       error: (err) => {
-        this.errorMessage = err.error?.errors?.[0]?.msg || 'Registration failed';
+        if (err.error?.errors && err.error.errors.length > 0) {
+          // Show first validator error from backend (e.g., password too short)
+          this.errorMessage = err.error.errors[0].msg;
+        } else if (err.error?.error) {
+          // For custom backend errors like "User already exists"
+          this.errorMessage = err.error.error;
+        } else {
+          this.errorMessage = 'Registration failed';
+        }
       }
     });
   }
